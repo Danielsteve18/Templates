@@ -208,7 +208,6 @@ img {
 }
 
 /* Sections */
-/* Sections */
 /* Adding scroll margin to all sections to prevent fixed header from covering content upon value navigation */
 section {
     scroll-margin-top: 100px;
