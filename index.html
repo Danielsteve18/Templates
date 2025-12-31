@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="icono.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -103,7 +104,7 @@
                 </div>
                 <div class="card">
                     <div class="card-image">
-                        <img src="tarot-06.webp" alt="Tarot y Arcangel">
+                        <img id="img-oraculo" src="tarot-06.webp" alt="Tarot y Arcangel">
                     </div>
                     <h3>Lectura + Oráculo Arcángel Miguel</h3>
                     <p class="details">5 preguntas + Un consejo por tema</p>
@@ -114,7 +115,7 @@
                 </div>
                 <div class="card">
                     <div class="card-image">
-                        <img src="runas.webp" alt="Tarot y Runas">
+                        <img id="img-runas" src="runas.webp" alt="Tarot y Runas">
                     </div>
                     <h3>Lectura + Runas Vikingas</h3>
                     <p class="details">5 preguntas + Un consejo por tema</p>
@@ -180,6 +181,31 @@
         </div>
     </section>
 
+    <section id="calendar-cta" class="section fade-in">
+        <div class="calendar-banner">
+            <h2>¿Listo para descubrir tu esencia?</h2>
+            <p>Reserva tu asesoramiento personalizado y vive una experiencia inolvidable</p>
+            <button id="openCalendarBtn" class="cta-calendar-btn">
+                <i class="far fa-calendar-alt"></i> Ver Disponibilidad
+            </button>
+        </div>
+    </section>
+
+    <!-- Calendar Modal -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Disponibilidad</h2>
+            <div class="calendar-wrapper">
+                <!-- Google Calendar Placeholder -->
+                <iframe src="https://calendar.google.com/calendar/embed?src=tarot9325%40gmail.com&ctz=America%2FBogota"
+                    style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+            <p class="modal-note">Los horarios en blanco están disponibles. Una vez elijas tu horario, contáctame por
+                WhatsApp para reservar.</p>
+        </div>
+    </div>
+
     <footer>
         <div class="container footer-content">
             <p>&copy; 2025 Tarot & Guía Espiritual. Todos los derechos reservados.</p>
@@ -199,6 +225,62 @@
         </a>
     </div>
 
+    <script>
+        // Modal Logic
+        const modal = document.getElementById("calendarModal");
+        const btn = document.getElementById("openCalendarBtn");
+        const span = document.getElementsByClassName("close-modal")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Image Slideshow Logic
+        const oraculoImages = ['tarot-06.webp', 'servicio_de_oráculo.webp'];
+        // Updated sequence for Runas: Original (runas.webp), Tarot (tarot.webp), Oraculo (servicio_de_oráculo.webp)
+        const runasImages = ['runas.webp', 'tarot.webp', 'servicio_de_oráculo.webp'];
+
+        let oraculoIndex = 0;
+        let runasIndex = 0;
+
+        const imgOraculo = document.getElementById('img-oraculo');
+        const imgRunas = document.getElementById('img-runas');
+
+        function rotateImages() {
+            // Oraculo Rotation
+            oraculoIndex = (oraculoIndex + 1) % oraculoImages.length;
+            if (imgOraculo) {
+                imgOraculo.style.opacity = '0'; // Full fade out
+                setTimeout(() => {
+                    imgOraculo.src = oraculoImages[oraculoIndex];
+                    imgOraculo.style.opacity = '1'; // Fade in
+                }, 500); // Wait 500ms for fade out transition matching CSS
+            }
+
+            // Runas Rotation
+            runasIndex = (runasIndex + 1) % runasImages.length;
+            if (imgRunas) {
+                imgRunas.style.opacity = '0'; // Full fade out
+                setTimeout(() => {
+                    imgRunas.src = runasImages[runasIndex];
+                    imgRunas.style.opacity = '1'; // Fade in
+                }, 500); // Wait 500ms for fade out transition matching CSS
+            }
+        }
+
+        // Rotate every 3.5 seconds
+        setInterval(rotateImages, 3500);
+    </script>
 </body>
 
 </html>
