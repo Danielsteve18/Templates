@@ -364,7 +364,7 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease-in-out;
 }
 
 .card:hover .card-image img {
@@ -497,6 +497,154 @@ footer {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+}
+
+/* Calendar CTA & Modal */
+.calendar-banner {
+    background-color: var(--secondary-bg);
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.calendar-banner h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-transform: none;
+    /* Override section h2 if needed */
+}
+
+.calendar-banner h2::after {
+    display: none;
+    /* Hide default section underline */
+}
+
+.cta-calendar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem 2rem;
+    background-color: #e0d8c8;
+    /* Beige/Light color from image */
+    color: #1a1a24;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 1.5rem;
+}
+
+.cta-calendar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: var(--secondary-bg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 2rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 12px;
+    width: 95%;
+    max-width: 900px;
+    max-height: 90vh;
+    /* Prevent overflow on small screens */
+    overflow-y: auto;
+    /* Scroll if content is too tall */
+    padding: 2rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+    text-align: center;
+    animation: slideDown 0.4s;
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--accent-color);
+}
+
+.calendar-wrapper {
+    position: relative;
+    padding-bottom: 75%;
+    /* Aspect ratio for iframe */
+    height: 0;
+    overflow: hidden;
+    margin-top: 1rem;
+    border-radius: 8px;
+}
+
+.calendar-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .floating-socials {
